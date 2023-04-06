@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Acortador de URL - OpenAPI 3.0
+  description: |-
+    Api para acortar URLs
+  version: 1.0.0
+servers:
+  - url: http://dev.myapi.com
+tags:
+  - name: shortUrl
+    description: Api para acortar URLs
+paths:
+  /api/v1/short-urls:
+    post:
+      tags:
+        - shortUrl
+      summary: Acortar la URL proporcionada.
+      parameters:
+        - $ref: '#/components/parameters/token'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bodyUrl'
+      responses:
+        '200':
+          description: (OK) Obtenemos la nueva URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/newUrl'
+        '401': 
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: El token no es correcto.
+  parameters:
+    token:
+      name: token
+      in: header 
+      description: Token que debe de cumplir las siguientes características, los paréntesis/llaves/corchetes abiertos se deben cerrar con el mismo tipo, los paréntesis/llaves/corchetes abiertos se deben cerrar en el orden correcto.
+      required: true
+      schema:
+        type: string
+  schemas:
+    bodyUrl:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Url que queremos acortar
+    newUrl:
+      type: object
+      description: nueva url
+
