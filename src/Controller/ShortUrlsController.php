@@ -21,7 +21,7 @@ class ShortUrlsController extends AbstractController
     }
 
     //Cambiar nombre al terminar por createUrl
-    public function index(Request $request)
+    public function createUrl(Request $request)
     {
         try{
         
@@ -36,7 +36,7 @@ class ShortUrlsController extends AbstractController
                     ]
                     ); 
         }
-        // Obtener la URL enviada en el cuerpo de la petición
+        // Obtener la URL enviada en el body de la petición
         $url = $request->getContent();
         $url = json_decode($url, true);
         $url = $url['url'];    

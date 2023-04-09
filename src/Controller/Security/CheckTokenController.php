@@ -19,20 +19,20 @@ class CheckTokenController extends AbstractController
             '(' => ')'
         );
 
-        $stack = array();
+        $list = array();
 
         for($i = 0 ; $i < strlen($token) ; $i++){
             
             if(array_key_exists($token[$i], $parentheses)){
-                $stack[] = $token[$i];
+                $list[] = $token[$i];
             }elseif(in_array($token[$i], $parentheses)){
-                if($parentheses[end($stack)] === $token[$i]){
-                     array_pop($stack);
+                if($parentheses[end($list)] === $token[$i]){
+                     array_pop($list);
                 }               
             } 
         }
 
-        if(empty($stack)) {
+        if(empty($list)) {
             return [
                 'status' => 'OK'
             ];

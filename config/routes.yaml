@@ -1,10 +1,4 @@
 ShortUrls:
     path: /api/v1/short-urls
-    controller: App\Controller\ShortUrlsController::index
-swagger_ui:
-    path: /api-docs
-    controller: App\Controller\SwaggerUiController::index
-swagger_json:
-    path: /swagger.json
-    controller: App\Controller\SwaggerJsonController::index
+    controller: App\Controller\ShortUrlsController::createUrl
 
